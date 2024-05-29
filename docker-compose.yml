@@ -1,0 +1,15 @@
+services:
+  spring-boot-app:
+    image: my-spring-boot-app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres-db
+  postgres-db:
+    image: postgres
+    environment:
+      POSTGRES_DB: railway
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: wkCnXDRAVXfREqccmjMsxryJldDJoCdL
+    ports:
+      - "22740:22740"
