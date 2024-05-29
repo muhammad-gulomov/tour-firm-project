@@ -130,7 +130,7 @@
             <p th:text="'Davomiyligi: ' + ${package.duration}"><strong></strong></p>
             <p th:text="'Sanalar: ' + ${package.time}"><strong></strong></p>
             <p th:text="'Paket Haqida: ' + ${package.description}"></p>
-            <a href="#" class="btn btn-primary btn-lg">Buyurtma Qilish</a>
+            <a th:href="@{'/book/'+${package.id}}" class="btn btn-primary btn-lg">Buyurtma Qilish</a>
         </div>
     </div>
 </section>
@@ -138,8 +138,8 @@
 <!-- Footer Section -->
 <footer class="footer text-center">
     <div class="container">
-        <p>© 2024 Visa Expert Uz. All rights reserved. | <a class="text-info text-lg-center"
-                                                            href="https://www.linkedin.com/in/muhammadtrying/">Muhammad's
+        <p>© 2024 Visa Expert Uz | <a class="text-info text-lg-center"
+                                      href="https://www.linkedin.com/in/muhammadtrying/">Muhammad's
             Production 2024</a></p>
         <!-- Social Media Links -->
         <div class="social-links mt-3">

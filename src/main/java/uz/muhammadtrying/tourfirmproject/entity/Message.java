@@ -14,13 +14,14 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Builder
 @Entity
-public class Comment {
+public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String content;
     @ManyToOne
     private Client client;
+    private boolean read;
     @CreationTimestamp
     private LocalDateTime timestamp;
 }

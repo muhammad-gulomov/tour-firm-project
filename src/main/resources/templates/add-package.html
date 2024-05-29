@@ -65,11 +65,18 @@
         button:hover {
             background-color: #166fe5; /* Darker shade of Facebook blue */
         }
+
+        .back-button {
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
+    <div class="back-button">
+        <a href="/get/admin/page/csrf" class="btn btn-secondary">Ortga Qaytish</a>
+    </div>
     <h2 class="text-center">Paket Qo'shish</h2>
     <form action="/add/package/db" method="post" enctype="multipart/form-data">
         <input type="hidden" name="_csrf" th:value="${_csrf.getToken()}">
@@ -97,7 +104,7 @@
             <label for="imageUrl">Rasm URL:</label>
             <textarea id="imageUrl" name="imageUrl" rows="5" required></textarea>
         </div>
-        <div class="form-group">
+        <div class="form-group text-center">
             <button type="submit">Saqlash</button>
         </div>
     </form>

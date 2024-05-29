@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buyurtma Qilish</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        .package-photo {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .package-info {
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: 500;
+        }
+        button {
+            padding: 12px 24px;
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2 class="text-center">Buyurtma Qilish</h2>
+    <div class="package-info">
+        <img th:src="${package.imageUrl}" alt="Package Photo" class="package-photo">
+        <h3>Joy: <span th:text="${package.place}">Sample Place</span></h3>
+        <p><strong>Tavsif:</strong> <span th:text="${package.description}">Sample Description</span></p>
+        <p><strong>Vaqt:</strong> <span th:text="${package.time}">Sample Time</span></p>
+        <p><strong>Davomiyligi:</strong> <span th:text="${package.duration}">Sample Duration</span></p>
+    </div>
+    <form action="/send/interest" method="post">
+        <input type="hidden" name="_csrf" th:value="${_csrf.getToken()}">
+        <input type="hidden" name="packageId" th:value="${package.id}">
+        <div class="form-group">
+            <label for="name">Ismingiz:</label>
+            <input type="text" id="name" name="name" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="phone">Telefon Raqamingiz:</label>
+            <input type="text" id="phone" name="phone" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="message">Xabar:</label>
+            <textarea id="message" name="message" class="form-control" rows="5">Meni bu tur paketga qiziqishim bor, iltimos menga bog'laning!</textarea>
+        </div>
+        <div class="form-group text-center">
+            <button type="submit">Yuborish</button>
+        </div>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

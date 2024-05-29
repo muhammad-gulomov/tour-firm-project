@@ -6,7 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import uz.muhammadtrying.tourfirmproject.entity.Client;
 import uz.muhammadtrying.tourfirmproject.service.ClientService;
-import uz.muhammadtrying.tourfirmproject.service.CommentService;
+import uz.muhammadtrying.tourfirmproject.service.MessageService;
 import uz.muhammadtrying.tourfirmproject.service.TourPackageService;
 
 @Controller
@@ -14,8 +14,8 @@ import uz.muhammadtrying.tourfirmproject.service.TourPackageService;
 @RequestMapping("/")
 public class PageController {
     private final ClientService clientService;
-    private final CommentService commentService;
     private final TourPackageService tourPackageService;
+    private final MessageService messageService;
 
     @GetMapping
     public String index() {
@@ -46,7 +46,7 @@ public class PageController {
         }
 
         Client savedClient = clientService.save(clientName, clientPhone);
-        commentService.save(savedClient, comment);
+        messageService.save(savedClient, comment);
         return "redirect:/";
     }
 
@@ -124,8 +124,38 @@ public class PageController {
             @RequestParam Integer packageId,
             Model model
     ) {
-        tourPackageService.update(packageId,place, duration, time, price, description, imageUrl);
+        tourPackageService.update(packageId, place, duration, time, price, description, imageUrl);
         model.addAttribute("packages", tourPackageService.findAll());
         return "redirect:/get/admin/page/csrf";
+    }
+
+    @GetMapping("messages")
+    private String goToMessagePage(Model model) {
+        model.addAttribute("messages", messageService.findAllOrderedByRead());
+        return "messages";
+    }
+
+    @GetMapping("alter/message/status/{messageId}")
+    private String goToMessagePage(@PathVariable Integer messageId) {
+        messageService.alterReadStatus(messageId);
+        return "redirect:/messages";
+    }
+
+    @GetMapping("delete/read/messages")
+    private String deleteReadMessages() {
+        messageService.deleteReadMessages();
+        return "redirect:/messages";
+    }
+
+    @GetMapping("book/{packageId}")
+    private String goToBook(Model model, @PathVariable Integer packageId) {
+        model.addAttribute("package", tourPackageService.findById(packageId));
+        return "booking-page";
+    }
+
+    @PostMapping("send/interest")
+    private String sendInterest(@RequestParam Integer packageId,@RequestParam String name,@RequestParam String phone) {
+        messageService.addInterest(packageId,name,phone);
+        return "redirect:/get/further/details";
     }
 }

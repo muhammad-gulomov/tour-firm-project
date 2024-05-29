@@ -9,6 +9,13 @@
         body {
             font-family: Arial, sans-serif;
         }
+        .button-group {
+            display: flex;
+            justify-content: flex-end;
+        }
+        .button-group a {
+            margin-left: 10px;
+        }
     </style>
 </head>
 <body>
@@ -16,10 +23,11 @@
 <div class="container mt-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h1>Admin - Tour Packages</h1>
-        <div>
-            <a href="/" class="btn btn-secondary mr-2">Bosh Sahifaga Qaytish</a>
-            <a href="/add/package/tour" class="btn btn-info mr-2">Tur Paket Qo'shish</a>
+        <div class="button-group">
+            <a href="/" class="btn btn-secondary">Bosh Sahifaga Qaytish</a>
+            <a href="/add/package/tour" class="btn btn-info">Tur Paket Qo'shish</a>
             <a href="/go/to/delete" class="btn btn-danger">O'chirish</a>
+            <a href="/messages" class="btn btn-primary">Xabarlar</a>
         </div>
     </div>
 
@@ -37,7 +45,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="package : ${packages}">
+        <tr th:unless="${package.deleted}" th:each="package : ${packages}">
             <td th:text="${package.id}">1</td>
             <td th:text="${package.place}">Place</td>
             <td th:text="${package.duration}">Duration</td>

@@ -21,7 +21,7 @@ public class TourPackageServiceImpl implements TourPackageService {
     @Override
     public void deleteById(Integer packageId) {
         TourPackage tourPackage = tourPackageRepo.findById(packageId).get();
-        if (tourPackage.getDeleted()) {
+        if (tourPackage.getDeleted() != null && tourPackage.getDeleted()) {
             tourPackage.setDeleted(false);
         } else {
             tourPackage.setDeleted(true);

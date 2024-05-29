@@ -21,7 +21,7 @@ public class SpringSecurity {
         http.csrf(manager -> {
         });
         http.authorizeHttpRequests(manager -> manager
-                .requestMatchers("/", "/css/**", "/login", "/contact", "/leave/message","get/further/details").permitAll()
+                .requestMatchers("/", "/css/**", "/login", "/contact","/book/**","/send/interest", "/leave/message","get/further/details").permitAll()
                 .anyRequest().authenticated());
         http.formLogin(manager -> manager.loginPage("/login"));
 

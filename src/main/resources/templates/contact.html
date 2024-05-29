@@ -78,8 +78,8 @@
                 type: 'POST',
                 data: $(this).serialize(),
                 success: function(response){
-                    $('#success-message').fadeIn().delay(2000).fadeOut(function(){
-                        window.location.href = "/"; // Redirect to homepage after 3 seconds
+                    $('#success-message').fadeIn().delay(800).fadeOut(function(){
+                        window.location.href = "/";
                     });
                 },
                 error: function(xhr, status, error){
