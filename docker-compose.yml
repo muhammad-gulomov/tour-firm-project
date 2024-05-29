@@ -8,6 +8,7 @@ services:
   postgres-db:
     image: postgres
     environment:
+      POSTGRES_URL: jdbc:postgresql://viaduct.proxy.rlwy.net:22740/railway
       POSTGRES_DB: railway
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: wkCnXDRAVXfREqccmjMsxryJldDJoCdL
