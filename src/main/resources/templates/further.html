@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parvoz Travel - Tur Paketlar</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #343a40;
+            padding-top: 56px;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://img.freepik.com/free-photo/backpacker-standing-sunrise-viewpoint-ja-bo-village-mae-hong-son-province-thailand_335224-1356.jpg?t=st=1716841271~exp=1716844871~hmac=ba0b013b5a6fc285d0cb1ef6b96bed23ed57dce06a1f3f53becc66db70bde8e3&w=2000') no-repeat center center;
+            background-size: cover;
+            height: 50vh;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            margin-bottom: 0;
+        }
+
+        .package-details {
+            padding: 3rem 0;
+        }
+
+        .package-details img {
+            width: 100%;
+            height: auto;
+            margin-bottom: 2rem;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .package-details p {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .package-details strong {
+            font-weight: bold;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        .footer {
+            background-color: #343a40;
+            color: #fff;
+            padding: 20px 0;
+            font-size: 0.9rem;
+        }
+
+        .footer a {
+            color: #fff;
+        }
+
+        .navbar {
+            margin-bottom: 20px;
+        }
+
+        .social-icons {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            margin-left: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand mx-auto" href="#">Visa Expert Uz</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Orqaga Qaytish</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<!-- Hero Section -->
+<section class="hero">
+    <div>
+        <h1>Qaynoq Tur Paketlar</h1>
+    </div>
+</section>
+
+<section th:each="package : ${packages}" class="package-details container" th:if="${!package.archived}">
+    <div class="row">
+        <div class="col-md-6">
+            <img width="100" th:src="${package.imageUrl}" alt="Tour Package Image" class="img-fluid">
+        </div>
+        <div class="col-md-6">
+            <p th:text="'Joy: '+ ${package.place}"><strong></strong></p>
+            <p th:text="'Davomiyligi: ' + ${package.duration}"><strong></strong></p>
+            <p th:text="'Sanalar: ' + ${package.time}"><strong></strong></p>
+            <p th:text="'Paket Haqida: ' + ${package.description}"></p>
+            <a href="#" class="btn btn-primary btn-lg">Buyurtma Qilish</a>
+        </div>
+    </div>
+</section>
+
+<!-- Footer Section -->
+<footer class="footer text-center">
+    <div class="container">
+        <p>© 2024 Visa Expert Uz. All rights reserved. | <a class="text-info text-lg-center"
+                                                            href="https://www.linkedin.com/in/muhammadtrying/">Muhammad's
+            Production 2024</a></p>
+        <!-- Social Media Links -->
+        <div class="social-links mt-3">
+            <a href="https://www.instagram.com/Visaexpert_uz" target="_blank" class="mr-3">
+                <i class="fab fa-instagram"></i> Bizni Instagramda Kuzatib Boring!
+            </a>
+            <a href="https://t.me/greencardinform" target="_blank">
+                <i class="fab fa-telegram"></i> Telegram Kanalimizga Obuna Bo'ling!
+            </a>
+        </div>
+    </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
