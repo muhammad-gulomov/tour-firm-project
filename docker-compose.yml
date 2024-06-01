@@ -1,6 +1,6 @@
 services:
   spring-boot-app:
-    image: my-spring-boot-app
+    image: muhammadtrying/tour_project
     ports:
       - "8080:8080"
     depends_on:
@@ -8,9 +8,8 @@ services:
   postgres-db:
     image: postgres
     environment:
-      POSTGRES_URL: jdbc:postgresql://viaduct.proxy.rlwy.net:22740/railway
-      POSTGRES_DB: railway
+      POSTGRES_DB: tour-firm-project
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: wkCnXDRAVXfREqccmjMsxryJldDJoCdL
+      POSTGRES_PASSWORD: root123
     ports:
-      - "22740:22740"
+      - "5433:5432"

@@ -19,12 +19,10 @@ public class Runnable implements CommandLineRunner {
     private final PasswordEncoder passwordEncoder;
     private final UserRepo userRepo;
     private final RoleRepo roleRepo;
-    @Value("${init.data}")
-    private Boolean initData;
 
     @Override
     public void run(String... args) throws Exception {
-        if (initData) {
+        if (roleRepo.findAll().isEmpty()) {
             initializeData();
         }
     }
@@ -41,7 +39,7 @@ public class Runnable implements CommandLineRunner {
 
         User user = User.builder()
                 .firstName("Muhammad")
-                .lastName("G'ulmov")
+                .lastName("G'ulomov")
                 .email("muhammadtrying@gmail.com")
                 .password(passwordEncoder.encode("123"))
                 .roles(List.of(role1, role2))

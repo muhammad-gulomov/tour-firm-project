@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - Tur Paketlar</title>
+    <title>Admin - Tour Packages</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -28,6 +28,7 @@
             <a href="/add/package/tour" class="btn btn-info">Tur Paket Qo'shish</a>
             <a href="/go/to/delete" class="btn btn-danger">O'chirish</a>
             <a href="/messages" class="btn btn-primary">Xabarlar</a>
+            <a sec:authorize="hasRole('ADMIN')" href="/users" class="btn btn-success">Users</a>
         </div>
     </div>
 
@@ -55,7 +56,6 @@
             <td>
                 <img width="85" th:src="${package.imageUrl}" alt="Tour Package Image" class="img-thumbnail">
             </td>
-
             <td>
                 <a th:href="@{'/edit/package/info/'+${package.id}}" class="btn btn-info btn-sm">Tahrirlash ✏️</a>
                 <a th:if="${!package.archived}" th:href="'/archive/package/'+${package.id}"

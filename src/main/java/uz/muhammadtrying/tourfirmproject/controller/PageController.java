@@ -8,6 +8,7 @@ import uz.muhammadtrying.tourfirmproject.entity.Client;
 import uz.muhammadtrying.tourfirmproject.service.ClientService;
 import uz.muhammadtrying.tourfirmproject.service.MessageService;
 import uz.muhammadtrying.tourfirmproject.service.TourPackageService;
+import uz.muhammadtrying.tourfirmproject.service.UserService;
 
 @Controller
 @RequiredArgsConstructor
@@ -16,6 +17,7 @@ public class PageController {
     private final ClientService clientService;
     private final TourPackageService tourPackageService;
     private final MessageService messageService;
+    private final UserService userService;
 
     @GetMapping
     public String index() {
@@ -154,8 +156,31 @@ public class PageController {
     }
 
     @PostMapping("send/interest")
-    private String sendInterest(@RequestParam Integer packageId,@RequestParam String name,@RequestParam String phone) {
-        messageService.addInterest(packageId,name,phone);
+    private String sendInterest(@RequestParam Integer packageId, @RequestParam String name, @RequestParam String phone) {
+        messageService.addInterest(packageId, name, phone);
         return "redirect:/get/further/details";
+    }
+
+    @GetMapping("users")
+    public String goToUsers(Model model) {
+        model.addAttribute("users", userService.findAll());
+        return "users";
+    }
+
+    @GetMapping("delete/user/{userId}")
+    public String deleteUser(@PathVariable Integer userId) {
+        userService.deleteById(userId);
+        return "redirect:/users";
+    }
+
+    @GetMapping("add/user")
+    public String addUser() {
+        return "add-user";
+    }
+
+    @PostMapping("save/user")
+    public String saveUser(@RequestParam String firstName, @RequestParam String lastName, @RequestParam String email, @RequestParam String password) {
+        userService.saveUser(firstName,lastName,email,password);
+        return "redirect:/users";
     }
 }
