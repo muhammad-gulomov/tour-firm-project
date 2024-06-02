@@ -25,6 +25,7 @@ public class User implements UserDetails {
     private String lastName;
     private String email;
     private String password;
+    private Integer view;
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Role> roles;
 
