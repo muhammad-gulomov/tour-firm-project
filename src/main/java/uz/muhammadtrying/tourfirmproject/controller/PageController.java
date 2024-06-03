@@ -169,7 +169,9 @@ public class PageController {
 
     @GetMapping("delete/user/{userId}")
     public String deleteUser(@PathVariable Integer userId) {
-        userService.deleteById(userId);
+        if (userId!=1){
+            userService.deleteById(userId);
+        }
         return "redirect:/users";
     }
 

@@ -40,8 +40,8 @@ public class Runnable implements CommandLineRunner {
         User user = User.builder()
                 .firstName("Muhammad")
                 .lastName("G'ulomov")
-                .email("muhammadtrying@gmail.com")
-                .password(passwordEncoder.encode("123"))
+                .email("visaexpert.uz@gmail.com")
+                .password(passwordEncoder.encode("xyz"))
                 .roles(List.of(role1, role2))
                 .build();
         userRepo.save(user);
