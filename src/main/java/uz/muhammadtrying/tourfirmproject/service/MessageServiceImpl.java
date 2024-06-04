@@ -63,4 +63,9 @@ public class MessageServiceImpl implements MessageService {
                 .build();
         messageRepo.save(message);
     }
+
+    @Override
+    public Integer unreadMessagesCount() {
+        return messageRepo.countUnreadMessages();
+    }
 }

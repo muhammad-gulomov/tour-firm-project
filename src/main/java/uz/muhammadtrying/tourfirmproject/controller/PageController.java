@@ -55,6 +55,7 @@ public class PageController {
     @GetMapping("get/admin/page/csrf")
     private String goToAdminPage(Model model) {
         model.addAttribute("packages", tourPackageService.findAll());
+        model.addAttribute("messageCount", messageService.unreadMessagesCount());
         return "admin";
     }
 

@@ -18,4 +18,6 @@ public interface MessageService {
     void deleteReadMessages();
 
     void addInterest(Integer packageId, String name, String phone);
+
+    Integer unreadMessagesCount();
 }

@@ -16,6 +16,26 @@
         .button-group a {
             margin-left: 10px;
         }
+
+        .btn-message {
+            position: relative;
+        }
+
+        .btn-message::after {
+            content: attr(data-count);
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: red;
+            color: white;
+            font-size: 12px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
     </style>
 </head>
 <body>
@@ -27,7 +47,7 @@
             <a href="/" class="btn btn-secondary">Bosh Sahifaga Qaytish</a>
             <a href="/add/package/tour" class="btn btn-info">Tur Paket Qo'shish</a>
             <a href="/go/to/delete" class="btn btn-danger">O'chirish</a>
-            <a href="/messages" class="btn btn-primary">Xabarlar</a>
+            <a href="/messages" class="btn btn-primary btn-lg btn-message" th:data-count="${messageCount}">Xabarlar</a>
             <a sec:authorize="hasRole('ADMIN')" href="/users" class="btn btn-success">Users</a>
         </div>
     </div>
